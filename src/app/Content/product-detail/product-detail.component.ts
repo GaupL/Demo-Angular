@@ -25,8 +25,33 @@ export class ProductDetailComponent implements OnInit {
   modelEmp : Employee = new Employee();
   modelCus : Customer = new Customer();
   serviceAuth = inject(AuthenServiceService);
+  price:number | null = null;
+  toPrice:number | null = null;
+  formattedPrice: string = '';
+  formattedToPrice: string = '';
 
+  formatNumber(value:string){
+    const NumberValue = value.replace(/[^0-9]/g, '');
+    this.price = +NumberValue;
+    this.formattedPrice = this.price.toLocaleString();
+    this.servicePro.model.price=this.price;
+}
+formatToNumber(value:string){
+  const NumberToPrice = value.replace(/[^0-9]/g,'');
+  this.toPrice =+ NumberToPrice;
+  this.formattedToPrice = this.toPrice.toLocaleString();
+  this.servicePro.model.toPrice = this.toPrice;
+}
 
+allowOnlyNumbers(event: KeyboardEvent) {
+  const allowedKeys = [
+    'Backspace', 'ArrowLeft', 'ArrowRight', 'Tab', 'Delete'
+  ];
+  const isNumber = /^[0-9]$/.test(event.key);
+  if (!isNumber && !allowedKeys.includes(event.key)) {
+    event.preventDefault();
+  }
+}
   ngOnInit(): void {
     this.serviceCus.getCustomers();
     this.serviceEmp.getEmployees();
@@ -35,13 +60,25 @@ export class ProductDetailComponent implements OnInit {
   }
 
   onFilterChange(){
+    if(this.servicePro.model.price){
+      if(!this.servicePro.model.toPrice){
+      alert("กรุณากรอกจำนวนเงิน");
+      return;
+      }
+    }
+    else{
+      if(!this.servicePro.model.price){
+        alert("กรุณากรอกจำนวนเงิน");
+        return;
+      }
+    }
+
     this.servicePro.selectedGetddlV4().subscribe({
       next:res=>{
         this.servicePro.modelList = res as Product[];
       },
       error(err) {
         console.log(err);
-        
       },
     });
   }

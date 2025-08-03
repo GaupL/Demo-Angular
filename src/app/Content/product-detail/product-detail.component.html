@@ -19,7 +19,7 @@
                     <select id="" class="form-select w-75" [(ngModel)]="servicePro.model.cusId" name="customerId"
                         (change)="onFilterChange()">
                         <option value="">--ทั้งหมด--</option>
-                        <option value="{{item.cusId}}" *ngFor="let item of serviceCus.modelList">{{item.name}}</option>
+                        <option value="{{item.cusId}}" *ngFor="let item of serviceCus.modelList">{{item.name}} {{item.lastname}} </option>
 
                     </select>
                 </div>
@@ -32,7 +32,7 @@
                     <select id="" class="form-select w-75" [(ngModel)]="servicePro.model.empId" name="empId"
                         (change)="onFilterChange()">
                         <option value="">--ทั้งหมด--</option>
-                        <option *ngFor="let item of serviceEmp.modelList" value="{{item.empId}}">{{item.name}}</option>
+                        <option *ngFor="let item of serviceEmp.modelList" value="{{item.empId}}">{{item.name}} {{item.lastname}} </option>
                     </select>
                 </div>
             </div>
@@ -41,9 +41,11 @@
                     จำนวนเงินตั้งแต่ :
                 </div>
                 <div class="col-3 d-flex justify-content-between">
-                    <input type="text" name="price" [(ngModel)]="servicePro.model.price" class="form-control w-75">
+                    <!-- <input type="text" name="price" [(ngModel)]="servicePro.model.price" class="form-control w-75"> -->
+                    <input type="text" name="price" (keydown)="allowOnlyNumbers($event)" [(ngModel)]="formattedPrice" (ngModelChange)="formatNumber($event)" class="form-control w-75">
                     <span class="p-2">ถึง</span>
-                    <input type="text" name="toPrice" [(ngModel)]="servicePro.model.toPrice" class="form-control w-75">
+                    <!-- <input type="text" name="toPrice" [(ngModel)]="servicePro.model.toPrice" class="form-control w-75"> -->
+                    <input type="text" name="toPrice" (keydown)="allowOnlyNumbers($event)" [(ngModel)]="formattedToPrice" (ngModelChange)="formatToNumber($event)" class="form-control w-75">
                 </div>
 
             </div>

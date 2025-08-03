@@ -59,8 +59,45 @@ export class createproComponent implements OnInit{
     cusId:['',Validators.required],
     userId:[this.auth.UserId,Validators.required]
   });
-
-
+formatPhoneNumber(){
+  let input =this.form.get('tel')?.value || '';
+  input = input.replace(/[^0-9]/g, '');
+  let formatted = input;
+  if(input.length > 3 && input.length <= 6){
+    formatted = input.slice(0,3)+ '-' +input.slice(3);    
+  }
+  else if(input.length > 6){
+    formatted = 
+    input.slice(0,3)+ '-' +
+    input.slice(3,6) + '-' + 
+    input.slice(6);
+  }
+  this.form.get('tel')?.setValue(formatted,{emitEvent:false});
+}
+  formatNumber(event:any){  // ไม่ได้ใช้
+    setTimeout(() => {
+    let input = event.target.value;
+    input = input.replace(/[^0-9]/g, '');
+    if(input){
+     const formatted = parseInt(input,10).toLocaleString('en-US');
+     event.target.value = formatted;
+     this.form.get('price')?.setValue(input,{emitEvent:false});
+    }
+    else {
+    event.target.value = '';
+    this.form.get('price')?.setValue(0, { emitEvent: false });
+    }
+    });
+  }
+allowOnlyNumbers(event: KeyboardEvent) {
+  const allowedKeys = [
+    'Backspace', 'ArrowLeft', 'ArrowRight', 'Tab', 'Delete'
+  ];
+  const isNumber = /^[0-9]$/.test(event.key);
+  if (!isNumber && !allowedKeys.includes(event.key)) {
+    event.preventDefault();
+  }
+}
   onFileSelected(event: any) {
   this.selectedFile = event.target.files[0];
 }

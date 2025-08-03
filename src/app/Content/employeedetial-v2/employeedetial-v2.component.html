@@ -29,9 +29,9 @@
             ช่วงอายุ :
         </div>
         <div class="col-3 d-flex justify-content-between">
-            <input type="text" class="form-control w-75" #txtage="ngModel" name="txtage" [(ngModel)]="service.model.age">
+            <input type="text" class="form-control w-75" #txtage="ngModel" name="txtage" (keydown)="allowOnlyNumbers($event)" [(ngModel)]="service.model.age">
             <span class="p-2">ถึง</span>
-            <input type="text" class="form-control w-75" #txtageTo="ngModel" name="txtageTo" [(ngModel)]="service.model.toage">
+            <input type="text" class="form-control w-75" #txtageTo="ngModel" name="txtageTo" (keydown)="allowOnlyNumbers($event)" [(ngModel)]="service.model.toage">
         </div>
 
     </div>

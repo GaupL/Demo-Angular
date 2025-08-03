@@ -113,4 +113,29 @@ toBase64(file:File):Promise<string>{
         reader.onerror =(error) => reject(error);
       });
   }
+
+allowOnlyNumbers(event: KeyboardEvent) {
+  const allowedKeys = [
+    'Backspace', 'ArrowLeft', 'ArrowRight', 'Tab', 'Delete'
+  ];
+  const isNumber = /^[0-9]$/.test(event.key);
+  if (!isNumber && !allowedKeys.includes(event.key)) {
+    event.preventDefault();
+  }
+}
+formatPhoneNumber(){
+  let input =this.form.get('tel')?.value || '';
+  input = input.replace(/[^0-9]/g, '');
+  let formatted = input;
+  if(input.length > 3 && input.length <= 6){
+    formatted = input.slice(0,3)+ '-' +input.slice(3);    
+  }
+  else if(input.length > 6){
+    formatted = 
+    input.slice(0,3)+ '-' +
+    input.slice(3,6) + '-' + 
+    input.slice(6);
+  }
+  this.form.get('tel')?.setValue(formatted,{emitEvent:false});
+}
 }

@@ -1,8 +1,8 @@
 export class Product{
     productId:string ="";
     productName:string ="";
-    price:number=1;
-    toPrice:string="";
+    price:number| null= null;
+    toPrice:number | null= null;
     contact:string ="";
     tel:string ="";
     empId:string ="";

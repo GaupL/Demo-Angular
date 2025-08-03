@@ -43,7 +43,7 @@
             จำนวนเงิน :
         </div>
         <div class="col-4">
-            <input type="text" class="form-control w-75" formControlName="price" required>
+            <input type="text" class="form-control w-75" formControlName="price" (keydown)="allowOnlyNumbers($event)" required>
         </div>
     </div>
     <div class="row mb-2">
@@ -59,7 +59,7 @@
             เบอร์โทร :
         </div>
         <div class="col-4">
-            <input type="text" maxlength="10" class="form-control w-75" formControlName="tel" required>
+            <input type="text" maxlength="12" class="form-control w-75" formControlName="tel" (input)="formatPhoneNumber()" (keydown)="allowOnlyNumbers($event)" required>
         </div>
     </div>
     <div class="row mb-2">

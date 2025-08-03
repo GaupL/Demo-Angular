@@ -5,13 +5,14 @@ import { ProductDetailComponent } from './Content/product-detail/product-detail.
 import { createproComponent } from './Content/create-pro/create-pro.component';
 import { ForbiddenComponent } from './Content/forbidden/forbidden.component';
 import { authguardGuard } from './Service/authen/authguard.guard';
-import { claimReq } from './Service/authen/claimReq-utiles';
 import { RegisterComponent } from './Login/register/register.component';
 import { CreateEmpComponent } from './Content/create-emp/create-emp.component';
 import { CreateCusComponent } from './Content/create-cus/create-cus.component';
 import { SaleChartComponent } from './sale-chart/sale-chart.component';
 import { SaleDetailComponent } from './Content/sale-detail/sale-detail.component';
 import { EmployeedetialV2Component } from './Content/employeedetial-v2/employeedetial-v2.component';
+import { claimReq } from './Service/authen/claimReq-utiles';
+
 
 
 export const routes: Routes = [

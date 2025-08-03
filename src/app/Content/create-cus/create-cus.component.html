@@ -36,7 +36,7 @@
             เบอร์โทร :
         </div>
         <div class="col-4">
-            <input type="text" class="form-control" maxlength="10" formControlName="tel" required>
+            <input type="text" class="form-control" maxlength="12" formControlName="tel" (input)="formatPhoneNumber()" (keydown)="allowOnlyNumbers($event)" required>
         </div>
     </div>
     <div class="row mb-2">

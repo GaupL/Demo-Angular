@@ -29,7 +29,7 @@
             อายุ :
         </div>
         <div class="col-8">
-            <input type="text" class="form-control" formControlName="age" required>
+            <input type="text" class="form-control" formControlName="age" (keydown)="allowOnlyNumbers($event)" required>
         </div>
     </div>
     <div class="row mb-2">
@@ -45,7 +45,7 @@
             เบอร์โทร :
         </div>
         <div class="col-8">
-            <input type="text" maxlength="10" class="form-control" formControlName="tel" required maxlength="10">
+            <input type="text" maxlength="12" class="form-control" formControlName="tel" (keydown)="allowOnlyNumbers($event)" (input)="formatPhoneNumber()" required>
         </div>
     </div>
     <div class="row mb-2">

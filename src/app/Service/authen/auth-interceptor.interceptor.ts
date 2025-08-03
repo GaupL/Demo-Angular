@@ -15,10 +15,10 @@ export const authInterceptorInterceptor: HttpInterceptorFn = (req, next) => {
       tap({
         error:(err:any)=>{
           if(err.status ==401){
-            serviceAuth.deleteToken();
             setTimeout(() => {
               alert("Please login again");
             }, 1500);
+            serviceAuth.deleteToken();
             router.navigateByUrl('/login');
           }
           else if(err.status ==403){
