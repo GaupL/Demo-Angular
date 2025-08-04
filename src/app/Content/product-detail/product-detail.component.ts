@@ -60,19 +60,14 @@ allowOnlyNumbers(event: KeyboardEvent) {
   }
 
   onFilterChange(){
-    if(this.servicePro.model.price){
-      if(!this.servicePro.model.toPrice){
+    if(this.servicePro.model.price && !this.servicePro.model.toPrice){
       alert("กรุณากรอกจำนวนเงิน");
       return;
-      }
     }
-    else{
-      if(!this.servicePro.model.price){
-        alert("กรุณากรอกจำนวนเงิน");
-        return;
-      }
+    else if(!this.servicePro.model.price && this.servicePro.model.toPrice){
+      alert("กรุณากรอกจำนวนเงิน");
+      return;
     }
-
     this.servicePro.selectedGetddlV4().subscribe({
       next:res=>{
         this.servicePro.modelList = res as Product[];

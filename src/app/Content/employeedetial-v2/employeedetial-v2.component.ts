@@ -31,17 +31,14 @@ export class EmployeedetialV2Component implements OnInit {
   userId = this.router.snapshot.paramMap.get('id');
   public  url :string ="https://localhost:7022/";
   submitForm1(){
-    if(this.service.model.age){
-      if(!this.service.model.toage){
+    if(this.service.model.age && !this.service.model.toage){
         alert('กรุณากรอกช่วงอายุให้ครบ');
         return;
-      }
     }
-    else{
-      if(this.service.model.toage){
+    else if(!this.service.model.age && this.service.model.toage){
           alert('กรุณากรอกช่วงอายุให้ครบ');
           return;
-        }
+        
     }
     this.service.getEmployeeSearchV2().subscribe({
       next:res=>{
