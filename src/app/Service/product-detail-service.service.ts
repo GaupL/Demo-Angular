@@ -19,9 +19,7 @@ export class ProductDetailServiceService {
   getProducts(){
     this.http.get(this.url).subscribe({
       next:res=>{
-        this.modelList = res as Product[];
-       // console.log(res);
-        
+        this.modelList = res as Product[];   
       },
       error(err) {
         console.log('ข้อมูล Products ผิดพลาด',err);

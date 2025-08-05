@@ -28,6 +28,6 @@ export class ContentComponent implements OnInit{
   }
 Logout(){
   this.serviceAuth.deleteToken();
-  this.router.navigateByUrl('/login');
+  this.router.navigateByUrl('');
 }
 }

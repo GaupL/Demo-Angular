@@ -3,7 +3,7 @@ import { AbstractControl, FormBuilder, FormGroup, NgForm, NgModelGroup, Validato
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RegisterServiceService } from '../../Service/register-service.service';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FirstkeyPipe } from '../../shared/pipe/firstkey.pipe';
 
@@ -42,16 +42,16 @@ export class RegisterComponent {
     hadDisplaybleError(controlname: string): boolean {
     const control = this.form.get(controlname);
     return Boolean(control?.invalid) && 
-    (this.submited || Boolean(control?.touched)) && Boolean(control?.dirty);
+    this.submited || Boolean(control?.touched) || Boolean(control?.dirty);
     }
 resetformModel(){
     this.submited = true;
-    this.form.markAllAsTouched();
   if(this.form.valid){
   this.service.postRegister(this.form.value).subscribe({
     next:res=>{
-         console.log('สำเร็จ', res);
+         alert('ลงทะเบียนสำเร็จ');
          this.form.reset();
+         this.submited = false;
         },
     error:err=>{
       console.log(err);

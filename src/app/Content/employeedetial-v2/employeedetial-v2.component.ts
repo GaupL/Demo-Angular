@@ -19,12 +19,7 @@ export class EmployeedetialV2Component implements OnInit {
 
   constructor(public service:EmployeeServiceService,private toastr:ToastrService){}
   ngOnInit(): void {
-   if(this.userId){
-      this.service.getByIdEmployees(this.userId);
-   }
-   else{
       this.service.getEmployees();
-   }
   }
   route = inject(Router);
   router = inject(ActivatedRoute)

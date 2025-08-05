@@ -20,7 +20,7 @@ import { ToastrService } from 'ngx-toastr';
   styles: ``
 })
 export class ProductDetailComponent implements OnInit {
-  constructor(public servicePro:ProductDetailServiceService,public serviceCus:CustomerServiceService,public serviceEmp:EmployeeServiceService,private toastr:ToastrService){}
+  constructor(public servicePro:ProductDetailServiceService,public serviceCus:CustomerServiceService,public serviceEmp:EmployeeServiceService,public toastr:ToastrService){}
   route = inject(Router);
   modelEmp : Employee = new Employee();
   modelCus : Customer = new Customer();
@@ -85,12 +85,12 @@ allowOnlyNumbers(event: KeyboardEvent) {
       {
         this.servicePro.deleteProduct(id).subscribe({
           next:res=>{
-              this.serviceCus.getCustomers();
-              this.serviceEmp.getEmployees();
               this.servicePro.getProducts();
+              this.toastr.success('คุณได้ลบ '+ item.productName +' เรียบร้อยแล้ว','ลบข้อมูลสำเร็จ');
           },
-          error(err) {
+          error:(err)=> {
             console.log(err);
+            
           },
         });
       }

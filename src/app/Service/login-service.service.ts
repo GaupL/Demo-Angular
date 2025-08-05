@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Route, Router } from '@angular/router';
 import { routes } from '../app.routes';
 import { AuthenServiceService } from './authen/authen-service.service';
+import { FormBuilder } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -15,16 +16,19 @@ export class LoginServiceService {
    route = inject(Router);
    
   constructor(private http:HttpClient,private serviceAuth:AuthenServiceService) { }
-  postLogin(formdata:any){
+  postLoginV2(formdata:any){
     return this.http.post(this.url+'/login',formdata).subscribe({
       next:(res:any)=>{
         this.serviceAuth.saveToken(res.token);
         this.route.navigateByUrl('/content/productDetail');
       },
       error(err) {
+        alert('Email หรือ Password ไม่ถูกต้อง');
         console.log('ผิดพลาด',err);
-        
       },
     });
+  }
+  postLogin(formdata:any){
+    return this.http.post(this.url+'/login',formdata);
   }
 }

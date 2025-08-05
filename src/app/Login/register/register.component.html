@@ -41,6 +41,7 @@
                     <div class="text-danger" *ngIf="hadDisplaybleError('email') && form.controls.email.hasError('required')">
                         Please enter your email address.
                     </div>
+                    <div class="text-danger" *ngIf="hadDisplaybleError('email') && form.controls.email.hasError('email')"> Invalid email format.</div>
                 </div>
                 <div class="col-6">
                     <input type="text" class="form-control fs-5" formControlName="address">

@@ -98,6 +98,18 @@ allowOnlyNumbers(event: KeyboardEvent) {
     event.preventDefault();
   }
 }
+onPriceInput(event: any): void {
+  let input = event.target.value;
+  const numeric = input.replace(/,/g, '');
+
+  if (!isNaN(numeric)) {
+    const formattedForPrice = Number(numeric).toLocaleString('en-US');
+    this.form.get('price')?.setValue(numeric, { emitEvent: false }); 
+    event.target.value = formattedForPrice;
+  } else {
+    this.form.get('price')?.setValue(0, { emitEvent: false });
+  }
+}
   onFileSelected(event: any) {
   this.selectedFile = event.target.files[0];
 }
