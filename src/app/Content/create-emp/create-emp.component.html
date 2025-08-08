@@ -1,5 +1,5 @@
 <div class="container">
-    <form [formGroup]="form" (submit)="saveData()">
+    <form [formGroup]="form" (submit)="saveData()" [class.submiited]="submitted" novalidate>
     <div class="row">
         <div class="col-6">
             <p class="fw-bold fs-5 ms-2 p-2">เพิ่มข้อมูลผู้รับผิดชอบ</p>

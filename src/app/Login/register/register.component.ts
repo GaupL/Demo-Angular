@@ -6,18 +6,27 @@ import { RegisterServiceService } from '../../Service/register-service.service';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FirstkeyPipe } from '../../shared/pipe/firstkey.pipe';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
   imports: [CommonModule,FormsModule,RouterLink,ReactiveFormsModule,FirstkeyPipe],
   templateUrl: './register.component.html',
-  styles: ``
+  styles: `
+  form.submitted input.ng-invalid{
+    border-color: red;
+  }
+  input.is-invalid {
+  border: 1px solid red;
+}
+  `
 })
 export class RegisterComponent {
   constructor(public service :RegisterServiceService ){}
   formbuider = inject(FormBuilder);
-  submited :boolean = false;
-
+  submitted :boolean = false;
+  toastr = inject(ToastrService);
+  router = inject(Router);
   passwordMatchValidator:ValidatorFn =(control:AbstractControl):null =>{
     const password = control.get('password');
     const confirmPassword = control.get('confirmPassword');
@@ -42,20 +51,21 @@ export class RegisterComponent {
     hadDisplaybleError(controlname: string): boolean {
     const control = this.form.get(controlname);
     return Boolean(control?.invalid) && 
-    this.submited || Boolean(control?.touched) || Boolean(control?.dirty);
+    (this.submitted || Boolean(control?.touched) || Boolean(control?.dirty))
     }
+
 resetformModel(){
-    this.submited = true;
+    this.submitted = true;
   if(this.form.valid){
   this.service.postRegister(this.form.value).subscribe({
     next:res=>{
-         alert('ลงทะเบียนสำเร็จ');
-         this.form.reset();
-         this.submited = false;
+         this.toastr.success('ลงทะเบียนสำเร็จ');
+        // this.form.reset();
+        // this.submitted = false;
+        this.router.navigateByUrl('');
         },
     error:err=>{
-      console.log(err);
-      
+      this.toastr.error('Email นี้มีผู้ใช้งานแล้ว');
     }
   });
   }

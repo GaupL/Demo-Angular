@@ -1,6 +1,6 @@
 <div class="container-fluid vh-100">
     <div class="d-flex justify-content-center align-items-center h-100">
-        <form [formGroup]="form" (submit)="resetformModel()">
+        <form [formGroup]="form" (submit)="resetformModel()" [class.submitted]="submitted" novalidate>
         <div class="p-5 wrapper" style="width: 1050px;">
             <div class="row text-center mb-2">
                 <h1 class="text-success">Register</h1>
@@ -15,13 +15,13 @@
             </div>
             <div class="row mb-2">
                 <div class="col-6">
-                    <input type="text" class="form-control fs-5" formControlName="name" >
+                    <input type="text" class="form-control fs-5" [ngClass]="{'is-invalid':hadDisplaybleError('name')}"  formControlName="name" >
                     <div class="text-danger" *ngIf="hadDisplaybleError('name') && form.controls.name.hasError('required')">
                         Please enter your name.
                     </div>
                 </div>
                 <div class="col-6">
-                    <input type="text" class="form-control fs-5" formControlName="nickname">
+                    <input type="text" class="form-control fs-5" [ngClass]="{'is-invalid':hadDisplaybleError('nickname')}" formControlName="nickname">
                     <div class="text-danger" *ngIf="hadDisplaybleError('nickname') && form.controls.nickname.hasError('required')">
                         Please enter your nickname.
                     </div>
@@ -37,14 +37,14 @@
             </div>
             <div class="row mb-2">
                 <div class="col-6">
-                    <input type="text" class="form-control fs-5" formControlName="email">
+                    <input type="text" class="form-control fs-5" [ngClass]="{'is-invalid':hadDisplaybleError('email')}" formControlName="email">
                     <div class="text-danger" *ngIf="hadDisplaybleError('email') && form.controls.email.hasError('required')">
                         Please enter your email address.
                     </div>
                     <div class="text-danger" *ngIf="hadDisplaybleError('email') && form.controls.email.hasError('email')"> Invalid email format.</div>
                 </div>
                 <div class="col-6">
-                    <input type="text" class="form-control fs-5" formControlName="address">
+                    <input type="text" class="form-control fs-5" [ngClass]="{'is-invalid':hadDisplaybleError('address')}" formControlName="address">
                     <div class="text-danger" *ngIf="hadDisplaybleError('address') && form.controls.address.hasError('required')">
                         Please enter your address.
                     </div>
@@ -57,7 +57,7 @@
             </div>
             <div class="row mb-2">
                 <div class="col-6">
-                    <input class="form-control fs-5" type="password" formControlName="password" minlength="6">
+                    <input class="form-control fs-5" type="password" [ngClass]="{'is-invalid':hadDisplaybleError('password')}" formControlName="password" minlength="6">
                     <div class="text-danger" *ngIf="hadDisplaybleError('password')">
                         <ng-container [ngSwitch]="form.controls.password.errors | firstkey">
                             <div *ngSwitchCase="'required'">

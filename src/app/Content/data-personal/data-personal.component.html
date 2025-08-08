@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="row">
+        <div class="col-6">
+            <p class="fw-bold fs-4 ms-2 p-2">ข้อมูลส่วนตัว</p>
+        </div>
+    </div>
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="row mb-2">
+                <div class="col-2 text-end p-1 fs-6 fw-bold">
+                    ชื่อ - นามสกุล :
+                </div>
+                <div class="col-4 p-1">
+                    <span class="form-label ms-4"> {{person?.fullname}} </span>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-2 text-end p-1 fs-6 fw-bold">
+                    ชื่อเล่น :
+                </div>
+                <div class="col-4 p-1">
+                    <span class="form-label ms-4">{{person?.name}} </span>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-2 text-end p-1 fs-6 fw-bold">
+                    ที่อยู่ :
+                </div>
+                <div class="col-4 p-1">
+                    <span class="form-label ms-4">{{person?.address}} </span>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-2 text-end p-1 fs-6 fw-bold">
+                    Email :
+                </div>
+                <div class="col-4 p-1">
+                    <span class="form-label ms-4">{{person?.user}} </span>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-2 text-end p-1 fs-6 fw-bold">
+                    สิทธิ์การใช้งาน :
+                </div>
+                <div class="col-4 p-1">
+                    <span class="form-label ms-4 text-capitalize">{{person?.role}} </span>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-2 text-end"></div>
+                <div class="col-4 p-1">
+                    <button class="btn btn-danger ms-2" style="width: 130px;" (click)="toggleChangePassword()">{{showpassword ? 'ยกเลิก':'เปลี่ยนรหัสผ่าน'}} </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card shadow-sm" *ngIf="showpassword">
+        <div class="card-body">
+            <div class="row mt-2">
+                <div class="col-2 text-end fw-bold p-1">รหัสผ่านเดิม :</div>
+                <div class="col-4">
+                    <input type="password" class="form-control w-50" [(ngModel)]="this.serviceRes.model.password">
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-2 text-end fw-bold p-1">รหัสผ่านใหม่ :</div>
+                <div class="col-4">
+                    <input type="password" class="form-control w-50" [(ngModel)]="this.serviceRes.model.newPassword">
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-2 text-end fw-bold p-1"></div>
+                <div class="col-4">
+                    <button class="btn btn-success " style="width: 130px;" (click)="confirmPass()">ยืนยัน </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

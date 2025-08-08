@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { Salechart } from '../../model/salechart';
 import { Customer } from '../../model/customer';
+import { DataPerson } from '../../model/data-person';
 
 @Injectable({
   providedIn: 'root'

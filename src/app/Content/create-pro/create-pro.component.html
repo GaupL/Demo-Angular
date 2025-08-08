@@ -1,5 +1,5 @@
 <div class="container">
-    <form [formGroup]="form" (submit)="onSubmit1()">
+    <form [formGroup]="form" (submit)="onSubmit1()" [class.submitted]="submitted" novalidate>
 <div class="row">
         <div class="col-6">
             <p class="fw-bold fs-5 ms-2 p-2">เพิ่มข้อมูลโครงการ</p>

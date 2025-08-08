@@ -17,15 +17,19 @@
     
             </ul>
         </div>
-        <div>
+        <div class="d-flex justify-content-end align-items-center">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a routerLink="personal" class="nav-link fw-bold">ข้อมูลส่วนตัว</a>
+                </li>
+            </ul>
             <button class="fw-bold btn btn-danger" (click)="Logout()">ออกจากระบบ</button>
         </div>
-    
-    
-    
     </div>
   </div>
 </nav>
 
-
+<div [@routerFadeIn]="getRouteUrl()">
 <router-outlet></router-outlet>
+</div>
+

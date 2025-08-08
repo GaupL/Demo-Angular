@@ -9,7 +9,11 @@ import { ToastrService } from 'ngx-toastr';
   selector: 'app-create-cus',
   imports: [ReactiveFormsModule],
   templateUrl: './create-cus.component.html',
-  styles: ``
+  styles: `
+  form.submitted input.ng-invalid{
+    border-color: red;
+  }
+  `
 })
 export class CreateCusComponent implements OnInit {
 constructor(public service:CustomerServiceService,private toastr:ToastrService){}
@@ -36,6 +40,7 @@ constructor(public service:CustomerServiceService,private toastr:ToastrService){
   route = inject(ActivatedRoute);
   CusId:string | null =this.route.snapshot.paramMap.get('id');
   formbuilder = inject(FormBuilder);
+  submitted:boolean = false;
   form = this.formbuilder.group({
     name:['',Validators.required],
     lastname:['',Validators.required],
@@ -46,19 +51,16 @@ constructor(public service:CustomerServiceService,private toastr:ToastrService){
 
   addData(){
     const person = this.form.value as Customer;
+    this.submitted = true;
     if(this.form.valid){
       if(this.CusId)
       {
         this.updateData(this.CusId,person);
-        
       }
       else{
         this.insertData(person);
       }
     }
-    else{
-        alert('กรุณากรอกข้อมูลให้ครบ');
-      }
   }
   insertData(person:Customer){
     this.service.postCustomer1(person).subscribe({

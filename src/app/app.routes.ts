@@ -12,6 +12,7 @@ import { SaleChartComponent } from './sale-chart/sale-chart.component';
 import { SaleDetailComponent } from './Content/sale-detail/sale-detail.component';
 import { EmployeedetialV2Component } from './Content/employeedetial-v2/employeedetial-v2.component';
 import { claimReq } from './Service/authen/claimReq-utiles';
+import { DataPersonalComponent } from './Content/data-personal/data-personal.component';
 
 
 
@@ -86,6 +87,11 @@ export const routes: Routes = [
                 path:'Salechart',
                 component:SaleChartComponent,
                 data:{claimReq:claimReq.admin}
+            },
+            {
+                path:'personal',
+                component:DataPersonalComponent,
+                data:{claimReq:claimReq.adminOrUser}
             }
         
         ]

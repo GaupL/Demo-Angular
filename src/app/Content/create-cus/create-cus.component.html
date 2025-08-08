@@ -1,5 +1,5 @@
 <div class="container">
-    <form [formGroup]="form" (submit)="addData()">
+    <form [formGroup]="form" (submit)="addData()" [class.submitted]="submitted" novalidate>
 
     <div class="row">
         <div class="col-6">

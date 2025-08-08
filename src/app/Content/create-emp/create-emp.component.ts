@@ -10,13 +10,18 @@ import { ToastrService } from 'ngx-toastr';
   selector: 'app-create-emp',
   imports: [ReactiveFormsModule,CommonModule],
   templateUrl: './create-emp.component.html',
-  styles: ``
+  styles: `
+  form.submiited input.ng-invalid{
+    border-color: red;
+  }
+  `
 })
 export class CreateEmpComponent implements OnInit{
   router = inject(Router);
   route = inject(ActivatedRoute);
   UserId:string | null = null;
   public  url :string ="https://localhost:7022/";
+  submitted:boolean = false;
   constructor(private service :EmployeeServiceService,private toastr:ToastrService){}
   ngOnInit(): void {
     this.UserId = this.route.snapshot.paramMap.get('id');
@@ -56,6 +61,7 @@ export class CreateEmpComponent implements OnInit{
   });
 
 saveData(){
+   this.submitted = true;
    this.UserId = this.route.snapshot.paramMap.get('id');
       const person = this.form.value as Employee;
       if(this.form.valid){
@@ -64,10 +70,8 @@ saveData(){
         }
         else{
           this.insertData(person);
+          
         }
-      }
-      else{
-        alert('กรุณากรอกข้อมูลให้ครบ');
       }
 }
 insertData(person:Employee){

@@ -14,17 +14,25 @@ import { ToastrService } from 'ngx-toastr';
   selector: 'app-add-pro-by-admin',
   imports: [CommonModule,FormsModule,ReactiveFormsModule],
   templateUrl: './create-pro.component.html',
-  styles: ``
+  styles: `
+  form.submitted input.ng-invalid{
+     border-color: red;
+  }
+  form.submitted select.ng-invalid{
+     border-color: red;
+  }
+  `
 })
 export class createproComponent implements OnInit{
   constructor(public service:ProductDetailServiceService,public serviceCus:CustomerServiceService,public serviceEmp:EmployeeServiceService,public toastr:ToastrService){}
   route = inject(Router);
   router = inject(ActivatedRoute);
   frombuilder = inject(FormBuilder);
+  submitted:boolean = false;
   user  = this.router.snapshot.paramMap.get('id');
   selectedFile:File | null = null;
   serviceAuth = inject(AuthenServiceService);
-   public auth:jwtPayload = this.serviceAuth.getclaims();
+  public auth:jwtPayload = this.serviceAuth.getclaims();
   ngOnInit(): void {
     this.serviceCus.getCustomers();
     this.serviceEmp.getEmployees();
@@ -118,17 +126,17 @@ onPriceInput(event: any): void {
   }
 
   onSubmit1(){
+    this.submitted = true;
     const models = this.form.value as Product;
     if(this.form.valid){
       if(this.user){
         this.updateData(this.user,models);
+        this.submitted = false;
       }
       else{
         this.saveData(models);
+        this.submitted = false;
       }
-    }
-    else{
-      alert('กรุณากรอกข้อมูลให้ครบ');
     }
   }
   saveData(model:Product){  

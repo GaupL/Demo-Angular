@@ -42,9 +42,6 @@ export class EmployeeServiceService{
     if(this.model.toage) params.toAge = this.model.toage;
     return this.http.get<Employee[]>(this.url+'/v2',{params:params});
   }
-
-
-
     getByIdEmployees(id:string){
       this.http.get(this.url+'/'+id).subscribe({
         next:res=>{

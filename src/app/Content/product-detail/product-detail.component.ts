@@ -86,7 +86,7 @@ allowOnlyNumbers(event: KeyboardEvent) {
         this.servicePro.deleteProduct(id).subscribe({
           next:res=>{
               this.servicePro.getProducts();
-              this.toastr.success('คุณได้ลบ '+ item.productName +' เรียบร้อยแล้ว','ลบข้อมูลสำเร็จ');
+              this.toastr.error('คุณได้ลบ '+ item.productName +' เรียบร้อยแล้ว','ลบข้อมูลสำเร็จ');
           },
           error:(err)=> {
             console.log(err);
