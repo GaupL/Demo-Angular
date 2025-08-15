@@ -7,8 +7,7 @@
                     ชื่อโครงการ :
                 </div>
                 <div class="col-4">
-                    <input type="text" class="form-control w-75" name="productName" autocomplete="on"
-                        [(ngModel)]="servicePro.model.productName">
+                    <input type="text" pInputText [(ngModel)]="servicePro.model.productName" name="productName" class="form-control w-75" autocomplete="on"  />    
                 </div>
             </div>
             <div class="row mb-2">
@@ -16,38 +15,33 @@
                     ผู้ขาย :
                 </div>
                 <div class="col-4">
-                    <select id="" class="form-select w-75" [(ngModel)]="servicePro.model.cusId" name="customerId"
-                        (change)="onFilterChange()">
-                        <option value="">--ทั้งหมด--</option>
-                        <option value="{{item.cusId}}" *ngFor="let item of serviceCus.modelList">{{item.name}} {{item.lastname}} </option>
-
-                    </select>
+                    <p-select [options]="serviceCus.modelList" [(ngModel)]="servicePro.model.cusId" name="customerId" [showClear]="true" optionLabel="name" optionValue="cusId" placeholder="--ทั้งหมด--" class="w-75 md:w-56" (onChange)="onFilterChange()" />
                 </div>
             </div>
             <div class="row mb-2">
-                <div class="col-2 text-end p-1 fs-6">
+                <div class="col-2 text-end p-1">
                     ผู้รับผิดชอบ :
                 </div>
                 <div class="col-4">
-                    <select id="" class="form-select w-75" [(ngModel)]="servicePro.model.empId" name="empId"
-                        (change)="onFilterChange()">
-                        <option value="">--ทั้งหมด--</option>
-                        <option *ngFor="let item of serviceEmp.modelList" value="{{item.empId}}">{{item.name}} {{item.lastname}} </option>
-                    </select>
+<p-select [options]="serviceEmp.modelList" [(ngModel)]="servicePro.model.empId" name="empId" [showClear]="true" optionLabel="name" optionValue="empId" placeholder="--ทั้งหมด--" class="w-75 md:w-56" (onChange)="onFilterChange()" />
                 </div>
             </div>
             <div class="row mb-2">
                 <div class="col-2 text-end p-1 fs-6">
                     จำนวนเงินตั้งแต่ :
                 </div>
-                <div class="col-3 d-flex justify-content-between">
+                <div class="col-3 d-flex justify-content-between d-none">
                     <!-- <input type="text" name="price" [(ngModel)]="servicePro.model.price" class="form-control w-75"> -->
                     <input type="text" name="price" (keydown)="allowOnlyNumbers($event)" [(ngModel)]="formattedPrice" (ngModelChange)="formatNumber($event)" class="form-control w-75">
                     <span class="p-2">ถึง</span>
                     <!-- <input type="text" name="toPrice" [(ngModel)]="servicePro.model.toPrice" class="form-control w-75"> -->
                     <input type="text" name="toPrice" (keydown)="allowOnlyNumbers($event)" [(ngModel)]="formattedToPrice" (ngModelChange)="formatToNumber($event)" class="form-control w-75">
                 </div>
-
+                <div class="col-3 d-flex justify-content-between">
+                    <p-inputnumber inputId="price" [(ngModel)]="servicePro.model.price" name="price" class="w-full" styleClass="w-full" [inputStyle]="{'width':'100%'}" />
+                    <span class="p-2">ถึง</span>
+                    <p-inputnumber inputId="toPrice" [(ngModel)]="servicePro.model.toPrice" name="toPrice" [inputStyle]="{'width':'100%'}" />
+                </div>
             </div>
             <div class="row mb-2">
                 <div class="col-2 text-end p-1 fs-6">
@@ -62,12 +56,13 @@
                     <div class="form-check">
                         <label for="lb2" class="form-check-label">ไม่ได้ใช้</label>
                         <input type="radio" [value]="1" class="form-check-input" (change)="onFilterChange()"
-                            name="statusUser" id="lb2" name="statusUser" [(ngModel)]="servicePro.model.status">
+                            name="statusUser" id="lb2" [(ngModel)]="servicePro.model.status">
+                        <!-- <p-radiobutton name="statusUser" value="1" [(ngModel)]="servicePro.model.status" inputId="lb2" (ngModelChange)="onFilterChange()" />     -->
                     </div>
                     <div class="form-check">
                         <label for="lb3" class="form-check-label">ยกเลิก</label>
                         <input type="radio" [value]="2" class="form-check-input" (change)="onFilterChange()"
-                            name="statusUser" id="lb3" name="statusUser" [(ngModel)]="servicePro.model.status">
+                            name="statusUser" id="lb3" [(ngModel)]="servicePro.model.status">
                     </div>
                 </div>
             </div>
@@ -85,7 +80,7 @@
     </form>
 </div>
 <div class="container-fluid">
-    <table class="table table-bordered table-hover">
+    <table class="table table-bordered table-hover d-none">
         <thead>
             <tr class="text-center">
                 <th>#</th>
@@ -113,4 +108,41 @@
             </tr>
         </tbody>
     </table>
+    <div class="card">
+    <p-table
+        [value]="servicePro.modelList"
+        [paginator]="true"
+        [rows]="10"
+        showGridlines
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [rowsPerPageOptions]="[10, 15, 20]"
+    >
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width:5%">#</th>
+                <th>ชื่อ</th>
+                <th style="width:10%">ผู้ขาย</th>
+                <th style="width:10%">ผู้รับผิดชอบ</th>
+                <th style="width:10%">จำนวน</th>
+                <th style="width:10%">ติดต่อ</th>
+                <th style="width:10%">เบอร์โทร</th>
+                <th style="width:10%">แก้ไข</th>
+                <th style="width:10%">ลบข้อมูล</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item let-i="rowIndex">
+            <tr class="text-center">
+                <td>{{i+1}}</td>
+                <td>{{ item.productName }}</td>
+                <td>{{ item.cusName}}</td>
+                <td>{{ item.empName }}</td>
+                <td>{{ item.price | number:'1.2-2'}}</td>
+                <td>{{ item.contact }}</td>
+                <td>{{ item.tel }}</td>
+                <td><button class="btn btn-warning" (click)="dataEdit(item.productId)"><i class="fa-regular fa-pen-to-square"></i></button></td>
+                <td><button class="btn btn-danger" (click)="dataDelete(item.productId,item)"><i class="fa-regular fa-trash-can"></i></button></td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
 </div>

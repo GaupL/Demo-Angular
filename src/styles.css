@@ -1,4 +1,6 @@
 @import 'ngx-toastr/toastr';
+@import 'primeicons/primeicons.css';
+
 .wrapper{
     border: 2px solid rgba(255, 255, 255, .5);
     backdrop-filter: blur(20px);
@@ -20,4 +22,38 @@
 .table thead th {
   background-color: #293b5f ;
   color: white ;
+}
+:host ::ng-deep .p-password input {
+  width: 300px;
+  font-size: 16px;
+  padding: 10px;
+  border: red 1px solid;
+  border-radius: 4px;
+}
+
+:host ::ng-deep .p-password {
+  margin-bottom: 1rem;
+}
+.myexpo{
+  border: 1px solid salmon;
+}
+.custom-width{
+  width: 75%;
+ border-color:blue  ;
+}
+p-inputnumber, .p-inputnumber {
+  width: 100%;
+}
+.style-btn{
+  width: 500px;
+}
+.p-datatable-thead > tr > th{
+  text-align: center !important;
+  background-color: #293b5f !important;
+  color: white !important;
+}
+.p-datatable-tbody > tr > td{
+  text-align: center !important;
+  color: black !important;
+  font-weight: 700;
 }

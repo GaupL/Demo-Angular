@@ -7,10 +7,13 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import {ButtonModule} from 'primeng/button';
+import { PasswordModule } from 'primeng/password';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-data-personal',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,ButtonModule,PasswordModule,InputTextModule],
   templateUrl: './data-personal.component.html',
   styles: ``
 })

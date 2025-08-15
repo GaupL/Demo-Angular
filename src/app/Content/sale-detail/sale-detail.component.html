@@ -49,33 +49,36 @@
     </form>
 </div>
     <div class="container-fluid">
-        <table class="table table-bordered table-hover ">
-            <thead>
-                <tr class="text-center">
-                    <th>#</th>
-                    <th>ชื่อ-นามสกุล</th>
-                    <th>ที่อยู่</th>
-                    <th>เบอร์โทร</th>
-                    <th style="width: 150px;">ยอดขายต่อเดือน</th>
-                    <th>แก้ไข</th>
-                    <th>ลบ</th>
-                </tr>
-            </thead>
-            <tbody *ngFor="let item of serviceCus.modelList;index as i;">
-                <tr class="text-center">
-                    <th>{{i+1}}</th>
-                    <th>{{item.name}} {{item.lastname}}</th>
-                    <th>{{item.address}}</th>
-                    <th>{{item.tel}}</th>
-                    <th><button class="btn btn-secondary" data-bs-target="#ShowChart" data-bs-toggle="modal"
-                            (click)="dataChartById(item)"><i class="fa-solid fa-signal"></i></button></th>
-                    <th><button class="btn btn-warning" (click)="EditCustomer(item.cusId)"><i
-                                class="fa-regular fa-pen-to-square"></i></button></th>
-                    <th><button class="btn btn-danger" (click)="deleteCus(item.cusId,item)"><i
-                                class="fa-regular fa-trash-can"></i></button></th>
-                </tr>
-            </tbody>
-        </table>
+        <div class="card">
+            <p-table [value]="serviceCus.modelList" [paginator]="true" [rows]="10" showGridlines
+                [tableStyle]="{ 'min-width': '50rem' }" [rowsPerPageOptions]="[10, 15, 20]">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width:5%">#</th>
+                        <th style="width:20%;">ชื่อ-นามสกุล</th>
+                        <th style="width:10%">ที่อยู่</th>
+                        <th style="width:10%">เบอร์โทร</th>
+                        <th style="width:10%">ยอดขายต่อเดือน</th>
+                        <th style="width:10%">แก้ไข</th>
+                        <th style="width:10%">ลบข้อมูล</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item let-i="rowIndex">
+                    <tr>
+                        <td>{{ i+1 }}</td>
+                        <td>{{ item.name }} {{item.lastname}}</td>
+                        <td>{{ item.address }}</td>
+                        <td>{{ item.tel }}</td>
+                        <td><button class="btn btn-secondary" data-bs-target="#ShowChart" data-bs-toggle="modal"
+                                (click)="dataChartById(item)"><i class="fa-solid fa-signal"></i></button></td>
+                        <td><button class="btn btn-warning" (click)="EditCustomer(item.cusId)"><i
+                                    class="fa-regular fa-pen-to-square"></i></button></td>
+                        <td><button class="btn btn-danger" (click)="deleteCus(item.cusId,item)"><i
+                                    class="fa-regular fa-trash-can"></i></button></td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
     </div>
 <div class="modal fade" id="ShowChart" tabindex="-1">
   <div class="modal-dialog modal-lg">

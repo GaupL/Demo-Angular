@@ -7,13 +7,23 @@ import { routes } from './app.routes';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { authInterceptorInterceptor } from './Service/authen/auth-interceptor.interceptor';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeuix/themes/aura'
 
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true })
-            , provideRouter(routes)
+            ,provideRouter(routes)
             ,provideHttpClient(withInterceptors([authInterceptorInterceptor]))
             ,provideHttpClient(withFetch())
+            ,provideToastr()
             ,provideAnimationsAsync()
-            ,provideToastr(),
+            ,providePrimeNG({
+              theme:{
+                preset: Aura,
+                options:{
+                  darkModeSelector:'.my-dark-mode',
+                }
+              }
+            })
           ]
 };

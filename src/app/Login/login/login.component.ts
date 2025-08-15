@@ -6,13 +6,15 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthenServiceService } from '../../Service/authen/authen-service.service';
 import { ToastrService } from 'ngx-toastr';
-import { Token } from '@angular/compiler';
+import { ButtonModule } from 'primeng/button';
+import { PasswordModule } from 'primeng/password';
+import { InputTextModule } from 'primeng/inputtext';
 
 
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule,RouterLink,CommonModule,FormsModule],
+  imports: [ReactiveFormsModule,RouterLink,CommonModule,FormsModule,ButtonModule,PasswordModule,InputTextModule],
   templateUrl: './login.component.html',
   styles: ``
 })

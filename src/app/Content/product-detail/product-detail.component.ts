@@ -12,10 +12,15 @@ import { debounce, debounceTime, distinctUntilChanged, switchMap } from 'rxjs';
 import { AuthenServiceService } from '../../Service/authen/authen-service.service';
 import { jwtPayload } from '../../../model/register';
 import { ToastrService } from 'ngx-toastr';
-
+import { SelectModule } from 'primeng/select';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { ButtonModule } from 'primeng/button';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { TableModule } from 'primeng/table';
 @Component({
   selector: 'app-product-detail',
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule,FormsModule,SelectModule,InputTextModule,TableModule,InputNumberModule,ButtonModule,RadioButtonModule],
   templateUrl: './product-detail.component.html',
   styles: ``
 })
@@ -30,33 +35,11 @@ export class ProductDetailComponent implements OnInit {
   formattedPrice: string = '';
   formattedToPrice: string = '';
 
-  formatNumber(value:string){
-    const NumberValue = value.replace(/[^0-9]/g, '');
-    this.price = +NumberValue;
-    this.formattedPrice = this.price.toLocaleString();
-    this.servicePro.model.price=this.price;
-}
-formatToNumber(value:string){
-  const NumberToPrice = value.replace(/[^0-9]/g,'');
-  this.toPrice =+ NumberToPrice;
-  this.formattedToPrice = this.toPrice.toLocaleString();
-  this.servicePro.model.toPrice = this.toPrice;
-}
 
-allowOnlyNumbers(event: KeyboardEvent) {
-  const allowedKeys = [
-    'Backspace', 'ArrowLeft', 'ArrowRight', 'Tab', 'Delete'
-  ];
-  const isNumber = /^[0-9]$/.test(event.key);
-  if (!isNumber && !allowedKeys.includes(event.key)) {
-    event.preventDefault();
-  }
-}
   ngOnInit(): void {
     this.serviceCus.getCustomers();
     this.serviceEmp.getEmployees();
     this.servicePro.getProducts();
-    
   }
 
   onFilterChange(){
@@ -99,5 +82,26 @@ allowOnlyNumbers(event: KeyboardEvent) {
   dataEdit(id:string){
     this.route.navigate(['/content/proByAdmin',id])
   }
+  formatNumber(value:string){
+    const NumberValue = value.replace(/[^0-9]/g, '');
+    this.price = +NumberValue;
+    this.formattedPrice = this.price.toLocaleString();
+    this.servicePro.model.price=this.price;
+}
+formatToNumber(value:string){
+  const NumberToPrice = value.replace(/[^0-9]/g,'');
+  this.toPrice =+ NumberToPrice;
+  this.formattedToPrice = this.toPrice.toLocaleString();
+  this.servicePro.model.toPrice = this.toPrice;
+}
 
+allowOnlyNumbers(event: KeyboardEvent) {
+  const allowedKeys = [
+    'Backspace', 'ArrowLeft', 'ArrowRight', 'Tab', 'Delete'
+  ];
+  const isNumber = /^[0-9]$/.test(event.key);
+  if (!isNumber && !allowedKeys.includes(event.key)) {
+    event.preventDefault();
+  }
+}
 }

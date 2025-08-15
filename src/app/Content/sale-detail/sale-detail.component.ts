@@ -10,10 +10,11 @@ import { ProductDetailServiceService } from '../../Service/product-detail-servic
 import { Salechart } from '../../../model/salechart';
 import { Chart } from 'chart.js';
 import { FormsModule } from '@angular/forms';
+import { TableModule } from 'primeng/table';
 
 @Component({
   selector: 'app-sale-detail',
-  imports: [ReactiveFormsModule,CommonModule,FormsModule],
+  imports: [ReactiveFormsModule,CommonModule,FormsModule,TableModule],
   templateUrl: './sale-detail.component.html',
   styles: ``
 })

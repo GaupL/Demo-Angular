@@ -59,19 +59,19 @@
             <div class="row mt-2">
                 <div class="col-2 text-end fw-bold p-1">รหัสผ่านเดิม :</div>
                 <div class="col-4">
-                    <input type="password" class="form-control w-50" [(ngModel)]="this.serviceRes.model.password">
+                    <p-password [(ngModel)]="this.serviceRes.model.password" [toggleMask]="true" [feedback]="false" />
                 </div>
             </div>
             <div class="row mt-2">
                 <div class="col-2 text-end fw-bold p-1">รหัสผ่านใหม่ :</div>
                 <div class="col-4">
-                    <input type="password" class="form-control w-50" [(ngModel)]="this.serviceRes.model.newPassword">
+                    <p-password [(ngModel)]="this.serviceRes.model.newPassword" [toggleMask]="true" [feedback]="false" />
                 </div>
             </div>
             <div class="row mt-2">
                 <div class="col-2 text-end fw-bold p-1"></div>
                 <div class="col-4">
-                    <button class="btn btn-success " style="width: 130px;" (click)="confirmPass()">ยืนยัน </button>
+                    <button class="btn btn-success" style="width: 130px;" (click)="confirmPass()">ยืนยัน </button>
                 </div>
             </div>
         </div>
