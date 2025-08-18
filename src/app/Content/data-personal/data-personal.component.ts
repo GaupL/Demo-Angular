@@ -22,7 +22,7 @@ export class DataPersonalComponent implements OnInit  {
   person: DataPerson | undefined;
   person1!:jwtPayload;
   router = inject(Router);
-  constructor(private service:AuthenServiceService,public serviceRes:RegisterServiceService,private toastr:ToastrService) {}
+  constructor(private service:AuthenServiceService,public serviceRes:RegisterServiceService,private toastr:ToastrService,private serviceAuth:AuthenServiceService) {}
   ngOnInit(): void {
    this.person1 = this.service.getclaims();
    console.log(this.person1.UserId);
@@ -51,6 +51,7 @@ export class DataPersonalComponent implements OnInit  {
   confirmPass(){
     this.serviceRes.postChangePassword(this.person1.UserId).subscribe({
       next:res=>{
+        this.serviceAuth.deleteToken();
         alert("เปลี่ยนรหัสผ่านสำเร็จ");
         this.toastr.success('เปลี่ยนรหัสผ่านเรียบร้อยแล้ว กรุณาเข้าสู่ระบบใหม่');
         this.serviceRes.model.password='';

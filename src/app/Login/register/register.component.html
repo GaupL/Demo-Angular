@@ -54,25 +54,35 @@
                 <div class="col-6">
                     <h5>Password</h5>
                 </div>
+                <div class="col-6">
+                    <h5>Age</h5>
+                </div>
             </div>
             <div class="row mb-2">
                 <div class="col-6">
-                    <input class="form-control fs-5" type="password" [ngClass]="{'is-invalid':hadDisplaybleError('password')}" formControlName="password" minlength="6">
+                    <input class="form-control fs-5" type="password" [ngClass]="{'is-invalid':hadDisplaybleError('password')}"
+                        formControlName="password" minlength="6">
                     <div class="text-danger" *ngIf="hadDisplaybleError('password')">
                         <ng-container [ngSwitch]="form.controls.password.errors | firstkey">
                             <div *ngSwitchCase="'required'">
-                                 Please enter you password
+                                Please enter you password
                             </div>
                             <div *ngSwitchCase="'minlength'">
                                 Atleast 6 characters required.
                             </div>
                             <div *ngSwitchCase="'pattern'">
                                 One or more special character(s).
-                            </div> 
+                            </div>
                         </ng-container>
                     </div>
                 </div>
+                <div class="col-6">
+                    <input class="form-control fs-5" type="text" maxlength="3" [ngClass]="{'is-invalid':hadDisplaybleError('age')}"
+                        formControlName="age">
+                </div>
             </div>
+
+
             <div class="row">
                 <div class="col-6">
                     <h5>Confirm Password</h5>

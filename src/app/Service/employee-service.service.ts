@@ -27,6 +27,9 @@ export class EmployeeServiceService{
       },
     });
   }
+    getEmployeeDDL():Observable<Employee[]>{
+      return this.http.get<Employee[]>(this.url + '/ddl');
+    }
   getEmployeeSearch():Observable<Employee[]>{
     const params:any=[];
     if(this.model.name) params.name = this.model.name; 

@@ -11,10 +11,14 @@ import { Salechart } from '../../../model/salechart';
 import { Chart } from 'chart.js';
 import { FormsModule } from '@angular/forms';
 import { TableModule } from 'primeng/table';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
+import { SelectModule } from 'primeng/select';
+import { ChartModule } from 'primeng/chart';
 
 @Component({
   selector: 'app-sale-detail',
-  imports: [ReactiveFormsModule,CommonModule,FormsModule,TableModule],
+  imports: [ReactiveFormsModule,CommonModule,FormsModule,TableModule,DialogModule,ButtonModule,SelectModule,ChartModule],
   templateUrl: './sale-detail.component.html',
   styles: ``
 })
@@ -23,14 +27,23 @@ export class SaleDetailComponent implements OnInit {
   rout = inject(Router);
   dataSale:any ={};
   NewYear = new Date().getFullYear();
+  years : any = [];
   SaleId =  this.router.snapshot.paramMap.get('id');
-
+ visible: boolean = false;
+     basicData: any;
+    basicOptions: any;
   ngOnInit(): void {
         if(this.SaleId){
       this.serviceCus.getByIdCustomer(this.SaleId);
     }
     else{
       this.serviceCus.getCustomers();
+      this.years =[ //เด๋วลองทำเป็น funtion จะได้ดูง่าย ๆ ในนี้
+        {name :'2568',code : '2025'},
+        {name :'2569',code : '2026'},
+        {name :'2570',code : '2027'},
+      ]
+      
     }
   }
   constructor(public serviceCus:CustomerServiceService,private toastr:ToastrService,public servicepro:ProductDetailServiceService){}
@@ -62,8 +75,13 @@ deleteCus(cusId:string,data:any){
   });
   }
 }
-
+    showDialog() {
+        this.visible = true;
+        
+    }
 dataChartById(data:any){
+  this.visible = true;
+  console.log(this.visible);
   this.NewYear = new Date().getFullYear();
   this.dataSale = data;
   this.loadChartData(this.dataSale.cusId,this.NewYear);
@@ -83,7 +101,8 @@ loadChartData(CusId:string,year:number){
         this.config.data.labels = months;
         this.config.data.datasets[0].data = summary;
         this.config.data.datasets[0].label='ยอดขายทั้งหมด '+ totalsum.toLocaleString() +' บาท';
-          
+        console.log( this.config.data.datasets[0].data);
+        
           if(this.chart){
             this.chart.destroy();
            }
@@ -118,4 +137,6 @@ public config: any = {
   },
 };
 chart:any;
+
 }
+

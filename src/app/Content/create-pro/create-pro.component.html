@@ -43,7 +43,8 @@
             จำนวนเงิน :
         </div>
         <div class="col-4">
-            <input type="text" class="form-control w-75" formControlName="price" (keydown)="allowOnlyNumbers($event)" (input)="onPriceInput($event)" required>
+            <input type="text" class="form-control w-75 d-none" formControlName="price" (keydown)="allowOnlyNumbers($event)" (input)="onPriceInput($event)" required>
+             <p-inputnumber inputId="price" formControlName="price" [minFractionDigits]="2" required />
         </div>
     </div>
     <div class="row mb-2">

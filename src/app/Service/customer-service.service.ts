@@ -23,6 +23,9 @@ export class CustomerServiceService {
       },
     });
   }
+  getCustomerDDL():Observable<Customer[]>{
+    return this.http.get<Customer[]>(this.url + '/ddl');
+  }
   searchCustomers():Observable<Customer[]>{
     const params:any =[];
     if(this.model.name) params.name=this.model.name;

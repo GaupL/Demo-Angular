@@ -69,8 +69,9 @@
                         <td>{{ item.name }} {{item.lastname}}</td>
                         <td>{{ item.address }}</td>
                         <td>{{ item.tel }}</td>
-                        <td><button class="btn btn-secondary" data-bs-target="#ShowChart" data-bs-toggle="modal"
+                        <td class=""><button class="btn btn-secondary" data-bs-target="#ShowChart" data-bs-toggle="modal"
                                 (click)="dataChartById(item)"><i class="fa-solid fa-signal"></i></button></td>
+                                <td class="d-none"> <p-button (onClick)="dataChartById(item)" label="Show1123123" /></td>
                         <td><button class="btn btn-warning" (click)="EditCustomer(item.cusId)"><i
                                     class="fa-regular fa-pen-to-square"></i></button></td>
                         <td><button class="btn btn-danger" (click)="deleteCus(item.cusId,item)"><i

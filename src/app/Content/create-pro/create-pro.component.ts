@@ -9,10 +9,11 @@ import { Product } from '../../../model/Product';
 import { AuthenServiceService } from '../../Service/authen/authen-service.service';
 import { jwtPayload } from '../../../model/register';
 import { ToastrService } from 'ngx-toastr';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 @Component({
   selector: 'app-add-pro-by-admin',
-  imports: [CommonModule,FormsModule,ReactiveFormsModule],
+  imports: [CommonModule,FormsModule,ReactiveFormsModule,InputNumberModule],
   templateUrl: './create-pro.component.html',
   styles: `
   form.submitted input.ng-invalid{
@@ -56,6 +57,8 @@ export class createproComponent implements OnInit{
       });
     }
   }
+
+  
 
   form = this.frombuilder.group({
     productName:['',Validators.required],

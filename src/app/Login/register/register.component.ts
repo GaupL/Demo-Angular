@@ -44,6 +44,7 @@ export class RegisterComponent {
     nickname:['',Validators.required],
     email:['',[Validators.required,Validators.email]],
     address:['',Validators.required],
+    age:['',Validators.required],
     role:['user'],
     password:['',[Validators.required,Validators.minLength(6),Validators.pattern(/^.*[^a-zA-Z0-9].*$/)]],
     confirmPassword:['',Validators.required],},{validators:this.passwordMatchValidator});
@@ -65,7 +66,9 @@ resetformModel(){
         this.router.navigateByUrl('');
         },
     error:err=>{
-      this.toastr.error('Email นี้มีผู้ใช้งานแล้ว');
+     // this.toastr.error('Email นี้มีผู้ใช้งานแล้ว');
+      console.log(err);
+      
     }
   });
   }

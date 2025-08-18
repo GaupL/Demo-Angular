@@ -37,8 +37,23 @@ export class ProductDetailComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.serviceCus.getCustomers();
-    this.serviceEmp.getEmployees();
+    this.serviceCus.getCustomerDDL().subscribe({
+      next:res=>{
+        this.serviceCus.modelList = res as Customer[];
+      },
+      error:err=>{
+        console.log(err);
+        
+      }
+    });
+    this.serviceEmp.getEmployeeDDL().subscribe({
+      next:res=>{
+        this.serviceEmp.modelList = res as Employee[];
+      },
+      error:err=>{
+        console.log(err);
+      }
+    });
     this.servicePro.getProducts();
   }
 

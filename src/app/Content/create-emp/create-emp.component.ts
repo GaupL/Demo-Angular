@@ -38,7 +38,6 @@ export class CreateEmpComponent implements OnInit{
           picture: null  
         });
         this.imageBase64 =this.url + employee.picture;
-      //  console.log(this.UserEmp);
         
       },
        error: (err) => {

@@ -30,15 +30,8 @@
                 <div class="col-2 text-end p-1 fs-6">
                     จำนวนเงินตั้งแต่ :
                 </div>
-                <div class="col-3 d-flex justify-content-between d-none">
-                    <!-- <input type="text" name="price" [(ngModel)]="servicePro.model.price" class="form-control w-75"> -->
-                    <input type="text" name="price" (keydown)="allowOnlyNumbers($event)" [(ngModel)]="formattedPrice" (ngModelChange)="formatNumber($event)" class="form-control w-75">
-                    <span class="p-2">ถึง</span>
-                    <!-- <input type="text" name="toPrice" [(ngModel)]="servicePro.model.toPrice" class="form-control w-75"> -->
-                    <input type="text" name="toPrice" (keydown)="allowOnlyNumbers($event)" [(ngModel)]="formattedToPrice" (ngModelChange)="formatToNumber($event)" class="form-control w-75">
-                </div>
                 <div class="col-3 d-flex justify-content-between">
-                    <p-inputnumber inputId="price" [(ngModel)]="servicePro.model.price" name="price" class="w-full" styleClass="w-full" [inputStyle]="{'width':'100%'}" />
+                    <p-inputnumber inputId="price" [(ngModel)]="servicePro.model.price" name="price" styleClass="w-full" [inputStyle]="{'width':'100%'}" />
                     <span class="p-2">ถึง</span>
                     <p-inputnumber inputId="toPrice" [(ngModel)]="servicePro.model.toPrice" name="toPrice" [inputStyle]="{'width':'100%'}" />
                 </div>
@@ -80,34 +73,6 @@
     </form>
 </div>
 <div class="container-fluid">
-    <table class="table table-bordered table-hover d-none">
-        <thead>
-            <tr class="text-center">
-                <th>#</th>
-                <th>ชื่อ</th>
-                <th>ผู้ขาย</th>
-                <th>ผู้รับผิดชอบ</th>
-                <th>จำนวน</th>
-                <th>ติดต่อ</th>
-                <th>เบอร์โทร</th>
-                <th>แก้ไข</th>
-                <th>ลบข้อมูล</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let item of servicePro.modelList;index as i" class="text-center">
-                <th>{{i+1}}</th>
-                <td>{{item.productName}}</td>
-                <td>{{item.cusName}}</td>
-                <td>{{item.empName}}</td>
-                <td>{{item.price | number:'1.2-2'}}</td>
-                <td>{{item.contact}}</td>
-                <td>{{item.tel}}</td>
-                <td><button class="btn btn-warning" (click)="dataEdit(item.productId)"><i class="fa-regular fa-pen-to-square"></i></button></td>
-                <td><button class="btn btn-danger" (click)="dataDelete(item.productId,item)"><i class="fa-regular fa-trash-can"></i></button></td>
-            </tr>
-        </tbody>
-    </table>
     <div class="card">
     <p-table
         [value]="servicePro.modelList"
